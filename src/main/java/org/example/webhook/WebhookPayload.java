@@ -7,6 +7,25 @@ public class WebhookPayload {
     private String firstname;
     private String lastname;
     private String externalId;
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getShortName() {
+        return shortName;
+    }
+
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
+    }
+
+    private String shortName;
 
     public int getOfficeId() {
         return officeId;
