@@ -1,34 +1,32 @@
-package org.example.webhook;
+package org.example;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/webhook")
 public class WebhookController {
 
     @PostMapping
-    public ResponseEntity<String> handleWebhook(@RequestBody WebhookPayload payload) {
+    public ResponseEntity<String> handleWebhook(@RequestBody Map<String, Object> payload) {
         // Process the webhook payload
         System.out.println("Received webhook payload: " + payload);
 
-        // Create a new client in the Spring Boot application based on the payload
+        // Create a new client or process the payload as needed
         createNewClient(payload);
 
         return new ResponseEntity<>("Webhook received and processed", HttpStatus.OK);
     }
 
-    @GetMapping
-    public String getWebHook(){
-
-        System.out.println("WebHook called.");
-        return "WebHook called.";
-    }
-
-    private void createNewClient(WebhookPayload payload) {
-        // Implement your logic to create a new client in your Spring Boot application
-        // This could involve saving the data to a database, calling another service, etc.
-        System.out.println("Creating new client: " + payload.getFirstname() + " " + payload.getLastname());
+    private void createNewClient(Map<String, Object> payload) {
+        // Implement the logic to handle the dynamic payload
+        // For example, save the data to a database or trigger other business logic
+        System.out.println("Processing payload: " + payload);
     }
 }
